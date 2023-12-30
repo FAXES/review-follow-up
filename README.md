@@ -20,7 +20,7 @@ this extension aims to help drive reviews from customers.
 ![Email](https://weblutions.com/i/udDCzf.png)
 
 ## Installation
-1. Download the latest [release](/FAXES/review-follow-up/releases)
+1. Download the latest [release](https://github.com/FAXES/review-follow-up/releases)
 2. Drag and drop the files into the `extensions` folder in FaxStore.
 3. Edit the config file found in `/extensions/configs/reviewfollowup.json`
    The `timeframe` option supports the below-listed formats
