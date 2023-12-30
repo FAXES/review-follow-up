@@ -1,5 +1,5 @@
 {
-    "timeframe": "1m",
+    "timeframe": "1w",
     "useEmail": true,
     "useDiscord": true
 }
