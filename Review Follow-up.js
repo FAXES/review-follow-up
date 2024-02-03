@@ -17,7 +17,7 @@ module.exports = async function(app, connection, bot, faxstore) {
         name: 'Review Follow-up',
         description: 'Send a follow up email and/or Discord message to users that have recently bought an item and prompt them to review the product.',
         icon: 'https://weblutions.com/u/S2YpFV.webp',
-        version: '1.0',
+        version: '1.0.1',
         author: 'FAXES',
         config: extConfig,
         url: 'https://github.com/FAXES/review-follow-up'
