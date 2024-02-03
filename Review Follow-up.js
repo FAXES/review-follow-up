@@ -26,7 +26,7 @@ module.exports = async function(app, connection, bot, faxstore) {
     function sendfuDiscord(e) {
         connection.query(`SELECT * FROM users WHERE userId = '${e.userId}' LIMIT 1`, function(err, user) {
             if(!user[0]) return;
-            discordUser = bot.users.cache.get(e.userId);
+            let discordUser = faxstore.discord.bot.users.cache.get(e.userId);
             if(discordUser) {
                 const embed = new EmbedBuilder()
                     .setColor(0x57F287)
