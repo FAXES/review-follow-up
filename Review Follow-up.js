@@ -17,7 +17,7 @@ module.exports = async function(app, connection, bot, faxstore) {
         name: 'Review Follow-up',
         description: 'Send a follow up email and/or Discord message to users that have recently bought an item and prompt them to review the product.',
         icon: 'https://weblutions.com/u/S2YpFV.webp',
-        version: '1.0.1',
+        version: '1.0.2',
         author: 'FAXES',
         config: extConfig,
         url: 'https://github.com/FAXES/review-follow-up'
@@ -40,6 +40,7 @@ module.exports = async function(app, connection, bot, faxstore) {
                 const row = new ActionRowBuilder().addComponents([button]);
                 try {
                     discordUser.send({embeds: [embed], components: [row]}).catch(function(err) {return;});
+                    if(extConfig.debug) console.log(`Sending Discord follow up to ${user[0].username} (${user[0].userId})`);
                 } catch (err) {}
             }
         });
@@ -49,7 +50,8 @@ module.exports = async function(app, connection, bot, faxstore) {
         connection.query(`SELECT * FROM users WHERE userId = '${e.userId}' LIMIT 1`, function(err, user) {
             if(!user[0]) return;
             let message = `Hi ${user[0].username},<br><br>We see you've recently purchased <strong>${e.productName}</strong> from us. We want to see how your experience has been.<br><br>Consider <a href="${config.siteInformation.domain}/reviews/create">leaving us a review</a> so we can continue to grow to be our best, for you.<br><br>Thank you`
-            sendEmail(user[0].userEmail, 'How was your recent purchase?', message, {})
+            sendEmail(user[0].userEmail, 'How was your recent purchase?', message, {});
+            if(extConfig.debug) console.log(`Sending email follow up to ${user[0].username} (${user[0].userId})`);
         });
     }
 
@@ -80,5 +82,5 @@ module.exports = async function(app, connection, bot, faxstore) {
                 }
             }
         });
-    }, ms('1m'));
+    }, ms('1h'));
 }
