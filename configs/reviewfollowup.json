@@ -1,5 +1,6 @@
 {
     "timeframe": "1w",
     "useEmail": true,
-    "useDiscord": true
+    "useDiscord": true,
+    "debug": false
 }
